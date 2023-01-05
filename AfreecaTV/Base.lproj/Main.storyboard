@@ -1,24 +1,225 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YaR-0R-X3Q">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--EsportsController-->
+        <scene sceneID="gQu-Qn-oKY">
+            <objects>
+                <viewController storyboardIdentifier="EsportsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1u9-by-qLz" userLabel="EsportsController" customClass="EsportsController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="knB-rh-hYH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4pG-vz-Fas"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="e스포츠" image="trophy" catalog="system" id="wdq-cc-qrh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2I3-3J-G4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1806" y="-977"/>
+        </scene>
+        <!--HomeController-->
+        <scene sceneID="QaU-XS-txB">
+            <objects>
+                <viewController storyboardIdentifier="HomeController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TV0-yn-03U" userLabel="HomeController" customClass="HomeController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vOi-OH-mls">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="h9K-MF-aFZ">
+                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="home_tableviewcell" rowHeight="110" id="adZ-t9-Bvi" customClass="HomeTableViewCell" customModule="AfreecaTV" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="110"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="adZ-t9-Bvi" id="rn5-7w-Q5c">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="110"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="방송 제목" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uad-Ge-hg4" userLabel="broad_title">
+                                                    <rect key="frame" x="185" y="10" width="156" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="156" id="Yya-rQ-agb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_img" translatesAutoresizingMaskIntoConstraints="NO" id="vEx-SA-NlR" userLabel="broad_thumb">
+                                                    <rect key="frame" x="10" y="10" width="165" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="165" id="lek-Wc-FVz"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lrl-7O-WR3" userLabel="profile_img">
+                                                    <rect key="frame" x="185" y="38" width="40" height="38.666666666666671"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="Kdx-fc-dMO"/>
+                                                        <constraint firstAttribute="width" constant="40" id="QRm-GJ-Suj"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BJ닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvx-1m-lGy" userLabel="user_nick">
+                                                    <rect key="frame" x="235" y="37" width="116" height="15.666666666666664"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="116" id="p2w-gp-rA1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RIM-l0-ubM" userLabel="person_icon">
+                                                    <rect key="frame" x="235" y="59.666666666666664" width="15" height="9.6666666666666643"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="7HT-kp-XTK"/>
+                                                        <constraint firstAttribute="height" constant="13" id="b4a-9D-JKs"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시청자수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7F-Ir-IZj" userLabel="person_cnt">
+                                                    <rect key="frame" x="252" y="58.666666666666657" width="35" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="oLn-kA-Vg1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mvx-1m-lGy" firstAttribute="top" secondItem="Uad-Ge-hg4" secondAttribute="bottom" constant="10" id="CAF-UT-EK3"/>
+                                                <constraint firstItem="lrl-7O-WR3" firstAttribute="leading" secondItem="vEx-SA-NlR" secondAttribute="trailing" constant="10" id="MuW-PK-Z4f"/>
+                                                <constraint firstItem="RIM-l0-ubM" firstAttribute="leading" secondItem="lrl-7O-WR3" secondAttribute="trailing" constant="10" id="Pwd-gO-aSH"/>
+                                                <constraint firstAttribute="bottom" secondItem="vEx-SA-NlR" secondAttribute="bottom" constant="10" id="RBd-Vf-Yzo"/>
+                                                <constraint firstItem="Uad-Ge-hg4" firstAttribute="leading" secondItem="vEx-SA-NlR" secondAttribute="trailing" constant="10" id="Rfc-9K-dO3"/>
+                                                <constraint firstItem="Uad-Ge-hg4" firstAttribute="top" secondItem="rn5-7w-Q5c" secondAttribute="top" constant="10" id="Sfh-3c-oRM"/>
+                                                <constraint firstItem="vEx-SA-NlR" firstAttribute="top" secondItem="rn5-7w-Q5c" secondAttribute="top" constant="10" id="TcU-xk-LvD"/>
+                                                <constraint firstItem="mvx-1m-lGy" firstAttribute="leading" secondItem="lrl-7O-WR3" secondAttribute="trailing" constant="10" id="Wim-5T-FCo"/>
+                                                <constraint firstItem="RIM-l0-ubM" firstAttribute="top" secondItem="mvx-1m-lGy" secondAttribute="bottom" constant="5" id="hOd-r5-04V"/>
+                                                <constraint firstItem="lrl-7O-WR3" firstAttribute="top" secondItem="Uad-Ge-hg4" secondAttribute="bottom" constant="10" id="ngD-rB-4NQ"/>
+                                                <constraint firstItem="H7F-Ir-IZj" firstAttribute="top" secondItem="mvx-1m-lGy" secondAttribute="bottom" constant="6" id="q6H-K5-Nw8"/>
+                                                <constraint firstItem="H7F-Ir-IZj" firstAttribute="leading" secondItem="RIM-l0-ubM" secondAttribute="trailing" constant="2" id="qEb-dr-oU1"/>
+                                                <constraint firstItem="vEx-SA-NlR" firstAttribute="leading" secondItem="rn5-7w-Q5c" secondAttribute="leading" constant="10" id="w9U-Uz-1vt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nick" destination="mvx-1m-lGy" id="oQt-Tp-ZFc"/>
+                                            <outlet property="profile" destination="lrl-7O-WR3" id="jgr-Uw-JxJ"/>
+                                            <outlet property="thumb" destination="vEx-SA-NlR" id="J9c-Wn-5tg"/>
+                                            <outlet property="title" destination="Uad-Ge-hg4" id="XKl-lC-38N"/>
+                                            <outlet property="view_cnt" destination="H7F-Ir-IZj" id="g5w-KT-X7W"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="szO-bd-DCM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="h9K-MF-aFZ" firstAttribute="leading" secondItem="szO-bd-DCM" secondAttribute="leading" id="6bW-qg-DoX"/>
+                            <constraint firstItem="szO-bd-DCM" firstAttribute="bottom" secondItem="h9K-MF-aFZ" secondAttribute="bottom" id="jNO-Wy-Har"/>
+                            <constraint firstItem="h9K-MF-aFZ" firstAttribute="top" secondItem="szO-bd-DCM" secondAttribute="top" id="oyV-ce-vvw"/>
+                            <constraint firstItem="szO-bd-DCM" firstAttribute="trailing" secondItem="h9K-MF-aFZ" secondAttribute="trailing" id="p7e-nX-R16"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="rpF-Ls-dZk"/>
+                    <connections>
+                        <outlet property="home_tableview" destination="h9K-MF-aFZ" id="M7x-5w-bP8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kot-Kc-qnY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2500" y="-977.48815165876772"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="xbX-xo-r8b">
+            <objects>
+                <tabBarController storyboardIdentifier="MainController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YaR-0R-X3Q" customClass="MainController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5nC-6F-DOd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="TV0-yn-03U" kind="relationship" relationship="viewControllers" id="zcp-Y6-7wQ"/>
+                        <segue destination="1u9-by-qLz" kind="relationship" relationship="viewControllers" id="rsA-RK-lo1"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="7lG-7f-M2S"/>
+                        <segue destination="soh-8n-7Qd" kind="relationship" relationship="viewControllers" id="KXe-xy-yO1"/>
+                        <segue destination="3uL-yl-0En" kind="relationship" relationship="viewControllers" id="dva-Eb-B0d"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ob-gS-cFU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1086" y="-1747"/>
+        </scene>
+        <!--VODController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VODController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" userLabel="VODController" customClass="VODController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="VOD" image="play.rectangle.on.rectangle" catalog="system" id="MKK-1D-p5Y"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1086" y="-977"/>
+        </scene>
+        <!--MyController-->
+        <scene sceneID="FDy-oD-Xjv">
+            <objects>
+                <viewController storyboardIdentifier="MyController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="soh-8n-7Qd" userLabel="MyController" customClass="MyController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hE1-IA-LtU">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="akz-qm-sxq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="MY" image="star" catalog="system" id="07J-ll-Ir9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yOQ-sk-7H8" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-389" y="-977"/>
+        </scene>
+        <!--MoreController-->
+        <scene sceneID="cAN-Zy-efN">
+            <objects>
+                <viewController storyboardIdentifier="MoreController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3uL-yl-0En" userLabel="MoreController" customClass="MoreController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ceq-dr-yoS">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="I0X-3L-CVa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="더보기" image="plus.square.dashed" catalog="system" id="pKE-S6-9KO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iec-yR-t7T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="324" y="-981"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="house" catalog="system" width="128" height="104"/>
+        <image name="logo_img" width="200" height="206"/>
+        <image name="person.2.fill" catalog="system" width="128" height="81"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <image name="play.rectangle.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="plus.square.dashed" catalog="system" width="128" height="114"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="trophy" catalog="system" width="128" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
