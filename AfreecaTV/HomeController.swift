@@ -31,8 +31,11 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var home_nav_item: UINavigationItem!
     // 방송 리스트URL >> 전체 불러오려면 select_value=00130000 >> select_value=0
     let afreecaURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1"
-
+    //토크/캠방
+    let afreecaURL_test = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1"
     let categoryURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1&"
+    //토크/캠방 : 00130000
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +51,41 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func getData(){
         // 1. URL 만들기
-        if let url = URL(string: afreecaURL){
+        if let url = URL(string: afreecaURL_test){
+            // 2. URL Session 만들기
+            let session = URLSession(configuration: .default)
+            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                // 에러가 났을경우 에러메시지 출력후 종료
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                //Json data에 data 넣기
+                if let JSONdata = data {
+                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
+                    //let dataString = String(data: JSONdata, encoding: .utf8)
+                    //print(dataString!) //JSON data 출력
+                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
+                    let decoder = JSONDecoder()
+                    do {
+                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
+                        self.broadData = decodedData
+                        DispatchQueue.main.async {
+                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                        }
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+
+    func getData2(){
+        // 1. URL 만들기
+        if let url = URL(string: categoryURL){
             // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
             // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
@@ -81,7 +118,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             task.resume()
         }
     }
-
     
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -177,51 +213,14 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         
         //옵션 초기화
-        let action1 = UIAlertAction(title: "전체", style: .default, handler: { [self]
+        let action1 = UIAlertAction(title: "전체", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("전체 보기")
-//            DispatchQueue.main.async {
-//                self.getCategoryData()
-//            }
-//            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//
-//                let cell = home_tableview.dequeueReusableCell(withIdentifier: "home_tableviewcell", for: indexPath) as! HomeTableViewCell
-//                // cell에 text, image 설정
-//                cell.title.text = broadData?.broad[indexPath.row].broad_title
-//                cell.nick.text = broadData?.broad[indexPath.row].user_nick
-//                cell.view_cnt.text = broadData?.broad[indexPath.row].total_view_cnt
-//                //cell 이미지 corner 설정 480 * 270 >> imageview 16:9
-//                cell.profile.layer.masksToBounds = true
-//                cell.profile.layer.cornerRadius = cell.profile.bounds.width/2
-//                cell.thumb.layer.masksToBounds = true
-//                cell.thumb.layer.cornerRadius = 10
-//                // BJ 프로필, 썸네일 이미지 cell에 할당
-//                DispatchQueue.main.async { [self] in
-//                    //optional data >> string >> url
-//                    if let profile_str = broadData?.broad[indexPath.row].profile_img
-//                    {
-//                        let profile_str2 = "https:" + profile_str
-//                        if let profile_url = NSURL(string:profile_str2)
-//                        {
-//                            cell.profile.downloaded(from: profile_url as URL)
-//
-//                        }
-//                    }
-//                    if let thumb_str = broadData?.broad[indexPath.row].broad_thumb
-//                    {
-//                        let thumb_str2 = "https:" + thumb_str
-//                        if let thumb_url = NSURL(string:thumb_str2)
-//                        {
-//                            cell.thumb.downloaded(from: thumb_url as URL)
-//                        }
-//                    }
-//
-//                }
-//
-//                return cell
-//            }
+            DispatchQueue.main.async {
+                self.getData()
+            }
         })
+//        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
         let action2 = UIAlertAction(title: "스포츠", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("성공한 챌린지")
@@ -232,7 +231,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action3 = UIAlertAction(title: "게임", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                
+                self.getData2()
             }
         })
         let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
@@ -259,10 +258,11 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         
+
         //action sheet에 옵션 추가.
         optionMenu.addAction(action1)
         optionMenu.addAction(action2)
@@ -270,7 +270,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         optionMenu.addAction(action4)
         optionMenu.addAction(action5)
         optionMenu.addAction(action6)
-        
         optionMenu.addAction(cancelAction)
         //show
         self.present(optionMenu, animated: true, completion: nil)
