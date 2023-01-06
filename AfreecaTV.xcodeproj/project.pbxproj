@@ -75,6 +75,7 @@
 				68C2F8382965A4B600F5945E /* AppDelegate.swift */,
 				68C2F83A2965A4B600F5945E /* SceneDelegate.swift */,
 				680D986D2965BC5F003B730F /* MainController.swift */,
+				681F53C029688CE900EF4837 /* AfreecaURL.swift */,
 				680D986F2965BCF0003B730F /* HomeController.swift */,
 				680D98792965D6F8003B730F /* HomeTableViewCell.swift */,
 				680D98712965BD46003B730F /* GameController.swift */,
@@ -86,7 +87,6 @@
 				68C2F83E2965A4B600F5945E /* Main.storyboard */,
 				68C2F8432965A4B700F5945E /* LaunchScreen.storyboard */,
 				68C2F8462965A4B700F5945E /* Info.plist */,
-				681F53C029688CE900EF4837 /* AfreecaURL.swift */,
 			);
 			path = AfreecaTV;
 			sourceTree = "<group>";

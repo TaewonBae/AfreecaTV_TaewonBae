@@ -152,7 +152,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //섹션의 row의 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 50
+        return 20
     }
     //tableview cell 지정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -274,29 +274,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.getData3()
             }
         })
-        let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("현재 챌린지")
-            DispatchQueue.main.async {
-                
-            }
-        })
-        let action5 = UIAlertAction(title: "과거순", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("과거순")
-            DispatchQueue.main.async {
-                
-            }
-            
-        })
-        let action6 = UIAlertAction(title: "최신순", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("최신순")
-            DispatchQueue.main.async {
-                
-            }
-            
-        })
+     
         
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -307,9 +285,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         optionMenu.addAction(action1)
         optionMenu.addAction(action2)
         optionMenu.addAction(action3)
-        optionMenu.addAction(action4)
-        optionMenu.addAction(action5)
-        optionMenu.addAction(action6)
         optionMenu.addAction(cancelAction)
         //show
         self.present(optionMenu, animated: true, completion: nil)
