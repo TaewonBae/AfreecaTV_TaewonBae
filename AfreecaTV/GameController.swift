@@ -14,7 +14,7 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var game_nav_item: UINavigationItem!
     @IBOutlet weak var game_tableview: UITableView!
     //스포츠 URL
-    let sportsURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1"
+    let gameURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //MARK: - URL 연결 및 Data Decode
     func getData(){
         // 1. URL 만들기
-        if let url = URL(string: sportsURL){
+        if let url = URL(string: gameURL){
             // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
             // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
@@ -46,8 +46,8 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 //Json data에 data 넣기
                 if let JSONdata = data {
                     //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    let dataString = String(data: JSONdata, encoding: .utf8)
-                    print(dataString!) //JSON data 출력
+                    //let dataString = String(data: JSONdata, encoding: .utf8)
+                    //print(dataString!) //JSON data 출력
                     //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
                     let decoder = JSONDecoder()
                     do {
