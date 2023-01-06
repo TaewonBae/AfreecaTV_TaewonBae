@@ -308,14 +308,32 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-Ld-EAL" userLabel="vod_navigationbar">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem id="hdr-Kh-iFW" userLabel="vod_nav_item"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hIY-Ld-EAL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="3Mc-Nb-cSd"/>
+                            <constraint firstItem="hIY-Ld-EAL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="atQ-Uh-W8V"/>
+                            <constraint firstItem="hIY-Ld-EAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="k2a-EB-B6H"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="VOD" image="play.rectangle.on.rectangle" catalog="system" id="MKK-1D-p5Y"/>
+                    <connections>
+                        <outlet property="vod_nav_item" destination="hdr-Kh-iFW" id="ZdK-nH-AMd"/>
+                        <outlet property="vod_navigationbar" destination="hIY-Ld-EAL" id="f1e-iT-9Cs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1086" y="-977"/>
+            <point key="canvasLocation" x="-1086.1538461538462" y="-977.48815165876772"/>
         </scene>
         <!--MyController-->
         <scene sceneID="FDy-oD-Xjv">
