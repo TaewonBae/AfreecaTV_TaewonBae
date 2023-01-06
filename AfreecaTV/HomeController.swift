@@ -21,17 +21,18 @@ struct Broad : Codable{
 }
 
 
-
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var broadData : BroadData? //(optional)property 변수 생성
+    var broadData : BroadData? //(optional)broad property 변수 생성
+//    var categoryData : CategoryData? //(optional) category property 변수 생성
+//    var filterData : FilterData? // filter property 변수 생성
     @IBOutlet weak var home_tableview: UITableView! //home tableview
     @IBOutlet weak var home_navigationbar: UINavigationBar!
     @IBOutlet weak var home_nav_item: UINavigationItem!
     // 방송 리스트URL >> 전체 불러오려면 select_value=00130000 >> select_value=0
     let afreecaURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1"
-    // 카테고리 URL
-    let categoryURL = "https://openapi.afreecatv.com/broad/category/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&locale=ko_KR"
+
+    let categoryURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1&"
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,15 +60,15 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 //Json data에 data 넣기
                 if let JSONdata = data {
-//                    print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-//                    let dataString = String(data: JSONdata, encoding: .utf8)
-//                    print(dataString!) //JSON data 출력
+                    //                    print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
+                    //                    let dataString = String(data: JSONdata, encoding: .utf8)
+                    //                    print(dataString!) //JSON data 출력
                     //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
                     let decoder = JSONDecoder()
                     do {
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                         self.broadData = decodedData
-        
+                        
                         
                         DispatchQueue.main.async {
                             self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
@@ -80,7 +81,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             task.resume()
         }
     }
-    
+
     
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -92,7 +93,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //tableview cell 지정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         
         let cell = home_tableview.dequeueReusableCell(withIdentifier: "home_tableviewcell", for: indexPath) as! HomeTableViewCell
         // cell에 text, image 설정
@@ -139,31 +140,12 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //팁 버튼관련
     private func setupNavigationBarItems(){
-//        // 1. 이미지 및 크기 조절
-//        let menuBtn = UIButton(type: .custom)
-//        menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 30, height: 30)
-//        menuBtn.setImage(UIImage(named:"logo_img"), for: .normal)
-//        menuBtn.imageEdgeInsets = UIEdgeInsets(top: 26, left: 26, bottom: 26, right: 26)
-//        menuBtn.layer.masksToBounds = true
-//        menuBtn.layer.cornerRadius = menuBtn.bounds.width/2
-//        menuBtn.backgroundColor = UIColor(red: 0.251, green: 0.455, blue: 0.780, alpha: 1.0)
-//        menuBtn.addTarget(self, action: #selector(onClick_Tip(_:)), for: UIControl.Event.touchUpInside)
-//
-//        // UIBarButtonItem의 rightBarButtonItem 할당
-//        let menuBarItem = UIBarButtonItem(customView: menuBtn)
-//        let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 34)
-//        currWidth?.isActive = true
-//        let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 34)
-//        currHeight?.isActive = true
-//        home_nav_item.rightBarButtonItem = menuBarItem
-        
-        //2.
         // 이미지 및 크기 조절
         let menuBtn2 = UIButton(type: .custom)
         menuBtn2.frame = CGRect(x: 0.0, y: 0.0, width: 30, height: 30)
         menuBtn2.setImage(UIImage(named:"broad_list_gray"), for: .normal)
         menuBtn2.addTarget(self, action: #selector(onClick_list(_:)), for: UIControl.Event.touchUpInside)
-
+        
         // UIBarButtonItem의 rightBarButtonItem 할당
         let menuBarItem2 = UIBarButtonItem(customView: menuBtn2)
         let currWidth2 = menuBarItem2.customView?.widthAnchor.constraint(equalToConstant: 30)
@@ -174,12 +156,12 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //왼쪽 로고
         let logoImage = UIImage.init(named: "logo_text")
-            let logoImageView = UIImageView.init(image: logoImage)
-            logoImageView.frame = CGRectMake(-40, 0, 50, 34)
+        let logoImageView = UIImageView.init(image: logoImage)
+        logoImageView.frame = CGRectMake(-40, 0, 50, 34)
         logoImageView.contentMode = .scaleAspectFit
-            let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
         let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-            negativeSpacer.width = -25
+        negativeSpacer.width = -25
         let currWidth3 = imageItem.customView?.widthAnchor.constraint(equalToConstant: 100)
         currWidth3?.isActive = true
         let currHeight3 = imageItem.customView?.heightAnchor.constraint(equalToConstant: 34)
@@ -187,76 +169,111 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         home_nav_item.leftBarButtonItems = [negativeSpacer, imageItem]
         
     }
-//    //팁 버튼관련 클릭 이벤트
-//    @IBAction func onClick_Tip(_ sender: Any) {
-//
-//    }
+    
     //팁 버튼관련 클릭 이벤트
     @IBAction func onClick_list(_ sender: Any) {
-
-         //action sheet title 지정
-         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
-         
-         //옵션 초기화
-         let action1 = UIAlertAction(title: "전체", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             print("전체 보기")
-             DispatchQueue.main.async {
-               
-             }
-         })
-         let action2 = UIAlertAction(title: "스포츠", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             print("성공한 챌린지")
-             DispatchQueue.main.async {
+        
+        //action sheet title 지정
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        
+        //옵션 초기화
+        let action1 = UIAlertAction(title: "전체", style: .default, handler: { [self]
+            (alert: UIAlertAction!) -> Void in
+            print("전체 보기")
+//            DispatchQueue.main.async {
+//                self.getCategoryData()
+//            }
+//            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//
+//                let cell = home_tableview.dequeueReusableCell(withIdentifier: "home_tableviewcell", for: indexPath) as! HomeTableViewCell
+//                // cell에 text, image 설정
+//                cell.title.text = broadData?.broad[indexPath.row].broad_title
+//                cell.nick.text = broadData?.broad[indexPath.row].user_nick
+//                cell.view_cnt.text = broadData?.broad[indexPath.row].total_view_cnt
+//                //cell 이미지 corner 설정 480 * 270 >> imageview 16:9
+//                cell.profile.layer.masksToBounds = true
+//                cell.profile.layer.cornerRadius = cell.profile.bounds.width/2
+//                cell.thumb.layer.masksToBounds = true
+//                cell.thumb.layer.cornerRadius = 10
+//                // BJ 프로필, 썸네일 이미지 cell에 할당
+//                DispatchQueue.main.async { [self] in
+//                    //optional data >> string >> url
+//                    if let profile_str = broadData?.broad[indexPath.row].profile_img
+//                    {
+//                        let profile_str2 = "https:" + profile_str
+//                        if let profile_url = NSURL(string:profile_str2)
+//                        {
+//                            cell.profile.downloaded(from: profile_url as URL)
+//
+//                        }
+//                    }
+//                    if let thumb_str = broadData?.broad[indexPath.row].broad_thumb
+//                    {
+//                        let thumb_str2 = "https:" + thumb_str
+//                        if let thumb_url = NSURL(string:thumb_str2)
+//                        {
+//                            cell.thumb.downloaded(from: thumb_url as URL)
+//                        }
+//                    }
+//
+//                }
+//
+//                return cell
+//            }
+        })
+        let action2 = UIAlertAction(title: "스포츠", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("성공한 챌린지")
+            DispatchQueue.main.async {
                 
-             }
-         })
-         let action3 = UIAlertAction(title: "게임", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             DispatchQueue.main.async {
-                 
-             }
-         })
-         let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             print("현재 챌린지")
-             DispatchQueue.main.async {
-                 
-             }
-         })
-         let action5 = UIAlertAction(title: "과거순", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             print("과거순")
-             DispatchQueue.main.async {
-                 
-             }
-             
-         })
-         let action6 = UIAlertAction(title: "최신순", style: .default, handler: {
-             (alert: UIAlertAction!) -> Void in
-             print("최신순")
-             DispatchQueue.main.async {
-                 
-             }
-             
-         })
-         
-         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-             (alert: UIAlertAction!) -> Void in
-         })
-         
-         //action sheet에 옵션 추가.
-         optionMenu.addAction(action1)
-         optionMenu.addAction(action2)
-         optionMenu.addAction(action3)
-         optionMenu.addAction(action4)
-         optionMenu.addAction(action5)
-         optionMenu.addAction(action6)
-         
-         optionMenu.addAction(cancelAction)
-         //show
-         self.present(optionMenu, animated: true, completion: nil)
+            }
+        })
+        let action3 = UIAlertAction(title: "게임", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            DispatchQueue.main.async {
+                
+            }
+        })
+        let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("현재 챌린지")
+            DispatchQueue.main.async {
+                
+            }
+        })
+        let action5 = UIAlertAction(title: "과거순", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("과거순")
+            DispatchQueue.main.async {
+                
+            }
+            
+        })
+        let action6 = UIAlertAction(title: "최신순", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("최신순")
+            DispatchQueue.main.async {
+                
+            }
+            
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        //action sheet에 옵션 추가.
+        optionMenu.addAction(action1)
+        optionMenu.addAction(action2)
+        optionMenu.addAction(action3)
+        optionMenu.addAction(action4)
+        optionMenu.addAction(action5)
+        optionMenu.addAction(action6)
+        
+        optionMenu.addAction(cancelAction)
+        //show
+        self.present(optionMenu, animated: true, completion: nil)
     }
 }
 
