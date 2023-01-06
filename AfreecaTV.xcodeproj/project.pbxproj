@@ -14,7 +14,6 @@
 		680D98762965BD8A003B730F /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680D98752965BD8A003B730F /* MyController.swift */; };
 		680D98782965BDA5003B730F /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680D98772965BDA5003B730F /* MoreController.swift */; };
 		680D987A2965D6F8003B730F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680D98792965D6F8003B730F /* HomeTableViewCell.swift */; };
-		681F53BD296823F500EF4837 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681F53BC296823F500EF4837 /* WebKit.framework */; };
 		68C2F8392965A4B600F5945E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2F8382965A4B600F5945E /* AppDelegate.swift */; };
 		68C2F83B2965A4B600F5945E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2F83A2965A4B600F5945E /* SceneDelegate.swift */; };
 		68C2F8402965A4B600F5945E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C2F83E2965A4B600F5945E /* Main.storyboard */; };
@@ -39,17 +38,6 @@
 		68C2F8442965A4B700F5945E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68C2F8462965A4B700F5945E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		68C2F8322965A4B600F5945E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				681F53BD296823F500EF4837 /* WebKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		681F53BB296823F500EF4837 /* Frameworks */ = {
@@ -105,7 +93,6 @@
 			buildConfigurationList = 68C2F8492965A4B700F5945E /* Build configuration list for PBXNativeTarget "AfreecaTV" */;
 			buildPhases = (
 				68C2F8312965A4B600F5945E /* Sources */,
-				68C2F8322965A4B600F5945E /* Frameworks */,
 				68C2F8332965A4B600F5945E /* Resources */,
 			);
 			buildRules = (

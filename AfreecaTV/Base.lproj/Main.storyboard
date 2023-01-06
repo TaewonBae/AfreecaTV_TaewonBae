@@ -16,28 +16,10 @@
                     <view key="view" contentMode="scaleToFill" id="knB-rh-hYH">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNF-jE-DAk" userLabel="web_view">
-                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4pG-vz-Fas"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oNF-jE-DAk" firstAttribute="leading" secondItem="4pG-vz-Fas" secondAttribute="leading" id="Pvn-CC-bpS"/>
-                            <constraint firstItem="oNF-jE-DAk" firstAttribute="bottom" secondItem="4pG-vz-Fas" secondAttribute="bottom" id="UaX-QK-uNZ"/>
-                            <constraint firstItem="oNF-jE-DAk" firstAttribute="trailing" secondItem="4pG-vz-Fas" secondAttribute="trailing" id="inL-XO-uhn"/>
-                            <constraint firstItem="oNF-jE-DAk" firstAttribute="top" secondItem="4pG-vz-Fas" secondAttribute="top" id="p4w-rm-5Bp"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="e스포츠" image="trophy" catalog="system" id="wdq-cc-qrh"/>
-                    <connections>
-                        <outlet property="web_view" destination="oNF-jE-DAk" id="ind-Jz-4IH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2I3-3J-G4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,28 +179,10 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWh-30-5XE" userLabel="web_view">
-                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="hWh-30-5XE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eNZ-mP-wGP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hWh-30-5XE" secondAttribute="bottom" id="n0L-2G-5BC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hWh-30-5XE" secondAttribute="trailing" id="wcc-Xx-Sa4"/>
-                            <constraint firstItem="hWh-30-5XE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yTz-fK-rMM"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="VOD" image="play.rectangle.on.rectangle" catalog="system" id="MKK-1D-p5Y"/>
-                    <connections>
-                        <outlet property="web_view" destination="hWh-30-5XE" id="gGP-L0-2ud"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
