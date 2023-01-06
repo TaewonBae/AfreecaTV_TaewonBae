@@ -27,7 +27,6 @@ struct Broad : Codable{
 
 
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    
     var broadData : BroadData? //(optional)broad property 변수 생성
     //    var categoryData : CategoryData? //(optional) category property 변수 생성
     //    var filterData : FilterData? // filter property 변수 생성
@@ -58,7 +57,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
             // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
+            let task = session.dataTask(with: url) { [self] (data, response, error) in
                 // 에러가 났을경우 에러메시지 출력후 종료
                 if error != nil{
                     print(error!)
@@ -74,9 +73,11 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     do {
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                         self.broadData = decodedData
+                        
                         DispatchQueue.main.async {
                             self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
                         }
+                        
                     }catch{
                         print(error)
                     }
@@ -150,6 +151,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //섹션의 row의 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 50
     }
     //tableview cell 지정
@@ -218,18 +220,18 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //팁 버튼관련
     private func setupNavigationBarItems(){
         // 이미지 및 크기 조절
-        let menuBtn2 = UIButton(type: .custom)
-        menuBtn2.frame = CGRect(x: 0.0, y: 0.0, width: 30, height: 30)
-        menuBtn2.setImage(UIImage(named:"broad_list_gray"), for: .normal)
-        menuBtn2.addTarget(self, action: #selector(onClick_list(_:)), for: UIControl.Event.touchUpInside)
+        let category_btn = UIButton(type: .custom)
+        category_btn.frame = CGRect(x: 0.0, y: 0.0, width: 30, height: 30)
+        category_btn.setImage(UIImage(named:"broad_list_gray"), for: .normal)
+        category_btn.addTarget(self, action: #selector(onClick_list(_:)), for: UIControl.Event.touchUpInside)
         
         // UIBarButtonItem의 rightBarButtonItem 할당
-        let menuBarItem2 = UIBarButtonItem(customView: menuBtn2)
-        let currWidth2 = menuBarItem2.customView?.widthAnchor.constraint(equalToConstant: 30)
-        currWidth2?.isActive = true
-        let currHeight2 = menuBarItem2.customView?.heightAnchor.constraint(equalToConstant: 30)
-        currHeight2?.isActive = true
-        home_nav_item.rightBarButtonItem = menuBarItem2
+        let categoryBarItem = UIBarButtonItem(customView: category_btn)
+        let category_width = categoryBarItem.customView?.widthAnchor.constraint(equalToConstant: 30)
+        category_width?.isActive = true
+        let category_height = categoryBarItem.customView?.heightAnchor.constraint(equalToConstant: 30)
+        category_height?.isActive = true
+        home_nav_item.rightBarButtonItem = categoryBarItem
         
         //왼쪽 로고
         let logoImage = UIImage.init(named: "logo_text")
@@ -260,7 +262,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.getData()
             }
         })
-        //        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
         let action2 = UIAlertAction(title: "토크/캠방", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
@@ -270,7 +271,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action3 = UIAlertAction(title: "먹방/쿡방", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-//                self.getData3()
+                self.getData3()
             }
         })
         let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
