@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  EsportsController.swift
 //  AfreecaTV
 //
 //  Created by 배태원 on 2023/01/04.
@@ -7,56 +7,33 @@
 
 import UIKit
 
-//JSON 파싱을 쉽게 하기 위한 방송Data형 구조체 만들기 -> Codable 프로토콜 준수해야됨. / Tree 형태 : Objecct > broad > [broad_title, broad_thumb,,,,]
-struct BroadData : Codable{
-    let broad : [Broad] //배열로 되어있어서 배열로 선언
-}
 
-struct Broad : Codable{
-    let broad_title : String// 방송 제목
-    let broad_thumb : String // 방속 썸네일 480*720
-    let user_nick : String // BJ 닉네임
-    let profile_img : String // BJ 프로필 이미지
-    let total_view_cnt : String // 총 시청자 수
-    let broad_start : String // 방송 시작 시간
-    let broad_grade : String // 방송 등급
-    let broad_bps : String // 방송 화질
-    let broad_resolution : String // 방송 해상도
-}
-
-
-class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-    
+class GameController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var broadData : BroadData? //(optional)broad property 변수 생성
-    //    var categoryData : CategoryData? //(optional) category property 변수 생성
-    //    var filterData : FilterData? // filter property 변수 생성
-    @IBOutlet weak var home_tableview: UITableView! //home tableview
-    @IBOutlet weak var home_navigationbar: UINavigationBar!
-    @IBOutlet weak var home_nav_item: UINavigationItem!
-    // 방송 리스트URL >> 전체 불러오려면 select_value=00130000 >> select_value=0
-    let afreecaURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1"
-    //토크/캠방
-    let afreecaURL_test = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1"
-    let categoryURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1&"
-    //토크/캠방 : 00130000
-    //
+    @IBOutlet weak var game_navigationbar: UINavigationBar!
+    @IBOutlet weak var game_nav_item: UINavigationItem!
+    @IBOutlet weak var game_tableview: UITableView!
+    //스포츠 URL
+    let sportsURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //navigation setting
-        home_navigationbar.shadowImage = UIImage()
+     
+    
+        game_navigationbar.shadowImage = UIImage()
         setupNavigationBarItems()
         
-        home_tableview.delegate = self
-        home_tableview.dataSource = self
-        
+        game_tableview.delegate = self
+        game_tableview.dataSource = self
+      
         getData()
+        
+
     }
-    
     //MARK: - URL 연결 및 Data Decode
     func getData(){
         // 1. URL 만들기
-        if let url = URL(string: afreecaURL_test){
+        if let url = URL(string: sportsURL){
             // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
             // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
@@ -69,15 +46,15 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 //Json data에 data 넣기
                 if let JSONdata = data {
                     //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
+                    let dataString = String(data: JSONdata, encoding: .utf8)
+                    print(dataString!) //JSON data 출력
                     //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
                     let decoder = JSONDecoder()
                     do {
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                         self.broadData = decodedData
                         DispatchQueue.main.async {
-                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
                         }
                     }catch{
                         print(error)
@@ -87,35 +64,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             task.resume()
         }
     }
-    
-    func getData2(){
-        if let url = URL(string: categoryURL){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        
-                        DispatchQueue.main.async {
-                            self.home_tableview.reloadData()
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -128,7 +76,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = home_tableview.dequeueReusableCell(withIdentifier: "home_tableviewcell", for: indexPath) as! HomeTableViewCell
+        let cell = game_tableview.dequeueReusableCell(withIdentifier: "game_tableviewcell", for: indexPath) as! GameTableViewCell
         // cell에 text, image 설정
         cell.title.text = broadData?.broad[indexPath.row].broad_title
         cell.nick.text = broadData?.broad[indexPath.row].user_nick
@@ -187,7 +135,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in}))
         self.present(alert, animated: true, completion: nil)
     }
-    //팁 버튼관련
     private func setupNavigationBarItems(){
         // 이미지 및 크기 조절
         let menuBtn2 = UIButton(type: .custom)
@@ -201,10 +148,10 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         currWidth2?.isActive = true
         let currHeight2 = menuBarItem2.customView?.heightAnchor.constraint(equalToConstant: 30)
         currHeight2?.isActive = true
-        home_nav_item.rightBarButtonItem = menuBarItem2
+        game_nav_item.rightBarButtonItem = menuBarItem2
         
         //왼쪽 로고
-        let logoImage = UIImage.init(named: "logo_text")
+        let logoImage = UIImage.init(named: "sports_text")
         let logoImageView = UIImageView.init(image: logoImage)
         logoImageView.frame = CGRectMake(-40, 0, 50, 34)
         logoImageView.contentMode = .scaleAspectFit
@@ -215,10 +162,10 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         currWidth3?.isActive = true
         let currHeight3 = imageItem.customView?.heightAnchor.constraint(equalToConstant: 34)
         currHeight3?.isActive = true
-        home_nav_item.leftBarButtonItems = [negativeSpacer, imageItem]
+        game_nav_item.leftBarButtonItems = [negativeSpacer, imageItem]
         
     }
-    
+   
     //팁 버튼관련 클릭 이벤트
     @IBAction func onClick_list(_ sender: Any) {
         
@@ -230,7 +177,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             (alert: UIAlertAction!) -> Void in
             print("전체 보기")
             DispatchQueue.main.async {
-                self.getData()
+                
             }
         })
         //        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
@@ -244,7 +191,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action3 = UIAlertAction(title: "게임", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData2()
+
             }
         })
         let action4 = UIAlertAction(title: "보이는 라딩", style: .default, handler: {
@@ -287,26 +234,6 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //show
         self.present(optionMenu, animated: true, completion: nil)
     }
-}
-
-//image url >> table cell 내에서 이미지 처리시 상당한 Delay 걸림
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleToFill){
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else {return}
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-            }
-        }.resume()
-    }
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleToFill){
-        guard let url = URL(string: link) else {return }
-        downloaded(from: url, contentMode: mode)
-    }
+    
+    
 }
