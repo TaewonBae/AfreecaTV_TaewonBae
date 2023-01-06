@@ -8,7 +8,7 @@
 import UIKit
 
 class VODController: UIViewController{
-    
+    //
     @IBOutlet weak var vod_navigationbar: UINavigationBar!
     @IBOutlet weak var vod_nav_item: UINavigationItem!
     override func viewDidLoad() {
