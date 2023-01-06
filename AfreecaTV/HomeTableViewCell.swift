@@ -14,7 +14,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profile: UIImageView! // BJ 프로필
     @IBOutlet weak var nick: UILabel! // BJ 닉네임
     @IBOutlet weak var view_cnt: UILabel! // 시청자 수
-        
+    @IBOutlet weak var broad_info: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

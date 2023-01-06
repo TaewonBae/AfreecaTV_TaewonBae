@@ -18,14 +18,18 @@ struct Broad : Codable{
     let user_nick : String // BJ 닉네임
     let profile_img : String // BJ 프로필 이미지
     let total_view_cnt : String // 총 시청자 수
+    let broad_start : String // 방송 시작 시간
+    let broad_grade : String // 방송 등급
+    let broad_bps : String // 방송 화질
+    let broad_resolution : String // 방송 해상도
 }
 
 
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     var broadData : BroadData? //(optional)broad property 변수 생성
-//    var categoryData : CategoryData? //(optional) category property 변수 생성
-//    var filterData : FilterData? // filter property 변수 생성
+    //    var categoryData : CategoryData? //(optional) category property 변수 생성
+    //    var filterData : FilterData? // filter property 변수 생성
     @IBOutlet weak var home_tableview: UITableView! //home tableview
     @IBOutlet weak var home_navigationbar: UINavigationBar!
     @IBOutlet weak var home_nav_item: UINavigationItem!
@@ -82,7 +86,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             task.resume()
         }
     }
-
+    
     func getData2(){
         // 1. URL 만들기
         if let url = URL(string: categoryURL){
@@ -172,7 +176,23 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //cell 클릭 이벤트
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.description)
+        // 방송 상세 정보 alert로 띄우기 (Bj이름, 방송시작시간, 방송해상도, 방송화질, 총 시청자 수)
+        let str_nick : String = ""+(broadData?.broad[indexPath.row].user_nick)!
+        let str_broad_start : String = ""+(broadData?.broad[indexPath.row].broad_start)!
+        let grade = ""+(broadData?.broad[indexPath.row].broad_grade)!
+        var str_broad_grade : String = ""
+        if(grade=="19"){
+            str_broad_grade = "연령 제한 방송(19세)"
+        }else{
+            str_broad_grade = "일반 방송"
+        }
+        let str_broad_bps : String = ""+(broadData?.broad[indexPath.row].broad_bps)!
+        let str_resolution : String = ""+(broadData?.broad[indexPath.row].broad_resolution)!
+        let str_total_view_cnt : String = ""+(broadData?.broad[indexPath.row].total_view_cnt)!
+        
+        let alert = UIAlertController(title: str_nick+"님의 방송 상세 정보", message: "방송 시작 시간 : "+str_broad_start+"\n방송등급 : "+str_broad_grade+"\n방송 화질 : "+str_broad_bps+"kbps(최대 8000kbps)\n방송 해상도 : "+str_resolution+"\n총 시청자 수 : "+str_total_view_cnt, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in}))
+        self.present(alert, animated: true, completion: nil)
     }
     //팁 버튼관련
     private func setupNavigationBarItems(){
@@ -220,7 +240,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.getData()
             }
         })
-//        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
+        //        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
         let action2 = UIAlertAction(title: "스포츠", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("성공한 챌린지")
@@ -262,7 +282,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
             (alert: UIAlertAction!) -> Void in
         })
         
-
+        
         //action sheet에 옵션 추가.
         optionMenu.addAction(action1)
         optionMenu.addAction(action2)
