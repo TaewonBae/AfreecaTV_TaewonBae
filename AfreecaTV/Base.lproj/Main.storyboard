@@ -12,14 +12,28 @@
         <!--EsportsController-->
         <scene sceneID="gQu-Qn-oKY">
             <objects>
-                <viewController storyboardIdentifier="EsportsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1u9-by-qLz" userLabel="EsportsController" customClass="EsportsController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SportsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1u9-by-qLz" userLabel="EsportsController" customClass="SportsController" customModule="AfreecaTV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="knB-rh-hYH">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GvS-fp-zIa" userLabel="sports_navigationbar">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem id="UXl-UJ-trR" userLabel="sports_nav_item"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="4pG-vz-Fas"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="e스포츠" image="trophy" catalog="system" id="wdq-cc-qrh"/>
+                    <connections>
+                        <outlet property="sports_nav_item" destination="UXl-UJ-trR" id="Evk-Ro-eGW"/>
+                        <outlet property="sports_navigationbar" destination="GvS-fp-zIa" id="kmE-Sv-EEX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2I3-3J-G4Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
