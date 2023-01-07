@@ -91,7 +91,6 @@ func getData(url: String){
 - 방송제목, BJ닉네임, 총 시청자 수는 label text에 data를 넣어준다.
 - BJ프로필 및 썸네일 이미지를 cell에 할당하기위해 받아온 Optional data를 string type로 바꾼 후 URL 형태로 바꿔준다.(📍주의)
 - 여기까지 할 경우 cell 세팅이 완료되나, 리스트를 불러오면 상당히 오랜시간이 걸림.
-- UIImageview downloaded 메소드는 밑에 설명
 ```swift
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -132,18 +131,54 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     return cell
 }
 ```
-
-
-- 서버에서 가져온 
-![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
-
-
+### 5. Extension UIImageView
+- tableview cell 내에서 이미지 처리시 상당한 Delay 걸리기 때문에 빠른 이미지 로딩을 위해 UIImageview를 extension하여 downloaded함수 내부에서 해당 url 이미지를 다시한번 DispatchQuere를 통해 이미지 처리 및 할당을 해줍니다.
 ```swift
-import UIKit
-class MainController: UITabBarController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleToFill){
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+            else {return}
+            DispatchQueue.main.async() { [weak self] in
+                self?.image = image
+            }
+        }.resume()
     }
+    func downloaded(from link: String, contentMode mode: ContentMode = .scaleToFill){
+        guard let url = URL(string: link) else {return }
+        downloaded(from: url, contentMode: mode)
+    }
+}
+```
+### 6. TableView Cell 클릭 이벤트
+
+
+![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
+- 
+```swift
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // 방송 상세 정보 alert로 띄우기 (Bj이름, 방송시작시간, 방송해상도, 방송화질, 총 시청자 수)
+    let str_nick : String = ""+(broadData?.broad[indexPath.row].user_nick)!
+    let str_broad_start : String = ""+(broadData?.broad[indexPath.row].broad_start)!
+    let grade = ""+(broadData?.broad[indexPath.row].broad_grade)!
+    var str_broad_grade : String = ""
+    if(grade=="19"){
+        str_broad_grade = "연령 제한 방송(19세)"
+    }else{
+        str_broad_grade = "일반 방송"
+    }
+    let str_broad_bps : String = ""+(broadData?.broad[indexPath.row].broad_bps)!
+    let str_resolution : String = ""+(broadData?.broad[indexPath.row].broad_resolution)!
+    let str_total_view_cnt : String = ""+(broadData?.broad[indexPath.row].total_view_cnt)!
+    
+    let alert = UIAlertController(title: str_nick+"님의 방송 상세 정보", message: "방송 시작 시간 : "+str_broad_start+"\n방송등급 : "+str_broad_grade+"\n방송 화질 : "+str_broad_bps+"kbps(최대 8000kbps)\n방송 해상도 : "+str_resolution+"\n총 시청자 수 : "+str_total_view_cnt, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in}))
+    self.present(alert, animated: true, completion: nil)
 }
 ```
 
