@@ -15,14 +15,35 @@
 - 상단 NavigationBar의 오른쪽에있는 메뉴를 선택하면 카테고리 리스트를 불러올 수 있도록 AlertController를 통해 메뉴를 구성하였으며, 홈 카테고리에서는 (전체방송, 토크/캠방, 먹방/쿡방), 게임 카테고리에서는 (게임 전체, LOL, 배틀그라운드, 피파온라인4, 서든어택)을 불러올 수 있습니다.
 ![003](https://user-images.githubusercontent.com/43931412/211161992-2a849572-5c83-43a0-8133-d3b19bf73fff.png)
 ![004](https://user-images.githubusercontent.com/43931412/211161999-7bf078a6-007a-4ce4-8349-c89b44df13c5.png)
+
+### 1.URL 연결 및 Data Pasing
 ### Swift Code
 ```swift
-import UIKit
-class MainController: UITabBarController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
+func getData(url: String){
+        if let url = URL(string: url){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                
+                if let JSONdata = data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
+                        self.broadData = decodedData
+                        DispatchQueue.main.async {
+                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                        }
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+            task.resume()
+        }
     }
-}
 ```
 
 ![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
