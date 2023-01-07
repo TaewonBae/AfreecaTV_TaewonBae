@@ -46,104 +46,10 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         home_tableview.delegate = self
         home_tableview.dataSource = self
         
-        getData()
+        getData(url: AfreecaURL.AfreecaURL1)
         
     }
     
-    //MARK: - URL 연결 및 Data Decode, 전체
-    func getData(){
-        // 1. URL 만들기
-        if let url = URL(string: afreecaURL){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { [self] (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        
-                        DispatchQueue.main.async {
-                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                        
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode, 토크/캠방
-    func getData2(){
-        if let url = URL(string: AfreecaURL.AfreecaURL2){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        
-                        DispatchQueue.main.async {
-                            
-                            self.home_tableview.reloadData()
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode, 먹방/쿡방
-    func getData3(){
-        if let url = URL(string: AfreecaURL.AfreecaURL3){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        
-                        DispatchQueue.main.async {
-                            
-                            self.home_tableview.reloadData()
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
     
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -259,19 +165,19 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action1 = UIAlertAction(title: "전체", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData()
+                self.getData(url: AfreecaURL.AfreecaURL1) // 전체
             }
         })
         let action2 = UIAlertAction(title: "토크/캠방", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData2()
+                self.getData(url: AfreecaURL.AfreecaURL2) // 토크/캠방
             }
         })
         let action3 = UIAlertAction(title: "먹방/쿡방", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData3()
+                self.getData(url: AfreecaURL.AfreecaURL3) // 먹방/쿡방
             }
         })
      
@@ -288,6 +194,36 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         optionMenu.addAction(cancelAction)
         //show
         self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    //MARK: - URL 연결 및 Data Decode 메소드
+    func getData(url: String){
+        if let url = URL(string: url){
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                // 에러가 났을경우 에러메시지 출력후 종료
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                //Json data에 data 넣기
+                if let JSONdata = data {
+                    let decoder = JSONDecoder()
+                    do {
+                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
+                        self.broadData = decodedData
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.home_tableview.reloadData()
+                        }
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+            task.resume()
+        }
     }
 }
 

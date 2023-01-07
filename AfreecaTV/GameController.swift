@@ -23,181 +23,12 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         game_tableview.delegate = self
         game_tableview.dataSource = self
-      
-        getData()
+        
+        getData(url: AfreecaURL.gameURL)
         
 
     }
-    //MARK: - URL 연결 및 Data Decode
-    func getData(){
-        // 1. URL 만들기
-        if let url = URL(string: AfreecaURL.gameURL){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode LOL
-    func getData2(){
-        // 1. URL 만들기
-        if let url = URL(string: AfreecaURL.gameURL1){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode LOL
-    func getData3(){
-        // 1. URL 만들기
-        if let url = URL(string: AfreecaURL.gameURL2){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode LOL
-    func getData4(){
-        // 1. URL 만들기
-        if let url = URL(string: AfreecaURL.gameURL3){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    //MARK: - URL 연결 및 Data Decode LOL
-    func getData5(){
-        // 1. URL 만들기
-        if let url = URL(string: AfreecaURL.gameURL4){
-            // 2. URL Session 만들기
-            let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                //Json data에 data 넣기
-                if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
+  
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -309,32 +140,32 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let action1 = UIAlertAction(title: "게임 전체", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData()
+                self.getData(url: AfreecaURL.gameURL)
             }
         })
         //        action1.setValue(UIImage(named: "logo_text")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), forKey: "image")
         let action2 = UIAlertAction(title: "LOL", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData2()
+                self.getData(url: AfreecaURL.gameURL1)
             }
         })
         let action3 = UIAlertAction(title: "배틀그라운드", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData3()
+                self.getData(url: AfreecaURL.gameURL2)
             }
         })
         let action4 = UIAlertAction(title: "피파온라인4", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData4()
+                self.getData(url: AfreecaURL.gameURL3)
             }
         })
         let action5 = UIAlertAction(title: "서든어택", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             DispatchQueue.main.async {
-                self.getData5()
+                self.getData(url: AfreecaURL.gameURL4)
             }
             
         })
@@ -342,7 +173,6 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
-        
         
         //action sheet에 옵션 추가.
         optionMenu.addAction(action1)
@@ -355,5 +185,38 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    
+    //MARK: - URL 연결 및 Data Decode 
+    func getData(url: String){
+        // 1. URL 만들기
+        if let url = URL(string: url){
+            // 2. URL Session 만들기
+            let session = URLSession(configuration: .default)
+            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
+            let task = session.dataTask(with: url) { (data, response, error) in
+                // 에러가 났을경우 에러메시지 출력후 종료
+                if error != nil{
+                    print(error!)
+                    return
+                }
+                //Json data에 data 넣기
+                if let JSONdata = data {
+                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
+                    //let dataString = String(data: JSONdata, encoding: .utf8)
+                    //print(dataString!) //JSON data 출력
+                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
+                    let decoder = JSONDecoder()
+                    do {
+                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
+                        self.broadData = decodedData
+                        DispatchQueue.main.async {
+                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                        }
+                    }catch{
+                        print(error)
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
 }
