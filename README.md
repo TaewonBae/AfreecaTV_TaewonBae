@@ -15,9 +15,13 @@ class MainController: UITabBarController{
 }
 ```
 
-### Development Environment
+## 개발 환경
 
-Device: Galaxy A80
+- 언어 : swift
+- xcode 14 이상에서 빌드 가능
+- Deployment Target  iOS15
+- client id : af_mobilelab_dev_e0f147f6c034776add2142b425e81777
+Device:iPhone
 
 Installation Environment: Android Studio
 
