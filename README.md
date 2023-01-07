@@ -2,7 +2,7 @@
 AfreecaTV OpenAPI를 이용한 방송화면 구성
 
 <img src="https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG" width="250" height="500"/>
-<img src="https://user-images.githubusercontent.com/43931412/211156088-139d6847-dd67-45fa-bb87-35c216f2eb45.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156288-04498d16-852e-44cb-9f8f-f2738a4a47e1.PNG" width="250" height="500"/>
 <img src="https://user-images.githubusercontent.com/43931412/211156090-28037c59-9e01-4dfa-a50a-2e115facc0f7.PNG" width="250" height="500"/>
 <img src="https://user-images.githubusercontent.com/43931412/211156093-adfc4223-cf2f-4b8a-8ef2-48f80be913b8.PNG" width="250" height="500"/>
 <img src="https://user-images.githubusercontent.com/43931412/211156094-75b24dc1-7d76-4ef1-b69e-91fe22c69816.PNG" width="250" height="500"/>
@@ -19,7 +19,9 @@ AfreecaTV OpenAPI를 이용한 방송화면 구성
 <img src="https://user-images.githubusercontent.com/43931412/211156115-4bfe4492-3e18-4ac8-91b0-8b4f7c78d98a.PNG" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 
-![6_먹쿡방]()
+![6_먹쿡방]()![2_전체]()
+![2_전체]()
+
 ![7_게임전체]()
 ![8_게임메뉴]()
 ![9_롤]()
