@@ -17,40 +17,50 @@
 ![004](https://user-images.githubusercontent.com/43931412/211161999-7bf078a6-007a-4ce4-8349-c89b44df13c5.png)
 
 ### 1.URL 연결 및 Data Pasing & Decoding
-- getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.
 - url은 AfreecaURL 클래스에 어디에서나 접근할 수 있도록 카테고리 별로 전역 변수를 설정했습니다. (카테고리별로 'select_vaule'을 다르게 설정)
 ```swift
 class AfreecaURL {
-    public static var AfreecaURL1 = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1" // 전체 0 
+    public static var gameURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1" // 전체 0, 게임00040000
 }
 ```
-
+- URL 연결을 위한 getData함수
+- getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.(parameter에는 위에 설정한 전역 변수를 넣어줍니다.)
+- 
 ```swift
+//MARK: - URL 연결 및 Data Decode
 func getData(url: String){
-        if let url = URL(string: url){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, error) in
-                if error != nil{
-                    print(error!)
-                    return
-                }
-                
-                if let JSONdata = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
-                        self.broadData = decodedData
-                        DispatchQueue.main.async {
-                            self.game_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
-                        }
-                    }catch{
-                        print(error)
+    // 1. URL 만들기
+    if let url = URL(string: url){
+        // 2. URL Session 만들기
+        let session = URLSession(configuration: .default)
+        // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
+        let task = session.dataTask(with: url) { (data, response, error) in
+            // 에러가 났을경우 에러메시지 출력후 종료
+            if error != nil{
+                print(error!)
+                return
+            }
+            //Json data에 data 넣기
+            if let JSONdata = data {
+                //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
+                //let dataString = String(data: JSONdata, encoding: .utf8)
+                //print(dataString!) //JSON data 출력
+                //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
+                let decoder = JSONDecoder()
+                do {
+                    let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
+                    self.broadData = decodedData
+                    DispatchQueue.main.async {
+                        self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
                     }
+                }catch{
+                    print(error)
                 }
             }
-            task.resume()
         }
+        task.resume()
     }
+}
 ```
 
 ![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
