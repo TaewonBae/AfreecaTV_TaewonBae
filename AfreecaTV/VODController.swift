@@ -8,14 +8,44 @@
 import UIKit
 
 class VODController: UIViewController{
-    //
+    
+
     @IBOutlet weak var vod_navigationbar: UINavigationBar!
     @IBOutlet weak var vod_nav_item: UINavigationItem!
+    
+    @IBOutlet weak var vod_img1: UIImageView!
+    @IBOutlet weak var vod_img2: UIImageView!
+    @IBOutlet weak var vod_img3: UIImageView!
+    @IBOutlet weak var vod_img4: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         vod_navigationbar.shadowImage = UIImage()
         setupNavigationBarItems()
+        setVODImage()
+        
+        
+    }
+    private func setVODImage(){
+        if let url_profile = NSURL(string:AfreecaURL.vodURL)
+        {
+            vod_img2.downloaded(from: url_profile as URL)
+            vod_img2.layer.cornerRadius = vod_img2.bounds.width/2
+            vod_img4.downloaded(from: url_profile as URL)
+            vod_img4.layer.cornerRadius = vod_img2.bounds.width/2
+            
+        }
+        if let url1 = NSURL(string:AfreecaURL.vodURL1)
+        {
+            vod_img1.downloaded(from: url1 as URL)
+
+        }
+        if let url2 = NSURL(string:AfreecaURL.vodURL2)
+        {
+            vod_img3.downloaded(from: url2 as URL)
+
+        }
     }
     private func setupNavigationBarItems(){
         //왼쪽 로고

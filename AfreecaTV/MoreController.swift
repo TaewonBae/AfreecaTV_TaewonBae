@@ -14,15 +14,17 @@ class MoreController: UIViewController{
     @IBOutlet weak var more_nav_item: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         more_navigationbar.shadowImage = UIImage()
         setupNavigationBarItems()
+        
     }
     private func setupNavigationBarItems(){
         //왼쪽 로고
         let img = UIImage.init(named: "more_text")
         let logoImageView = UIImageView.init(image: img)
-        logoImageView.frame = CGRectMake(0, 0, 40, 34)
+        logoImageView.frame = CGRectMake(0, 0, 50, 34)
         logoImageView.contentMode = .scaleAspectFit
         let imageItem = UIBarButtonItem.init(customView: logoImageView)
         let space = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
