@@ -27,8 +27,7 @@ struct Broad : Codable{
 
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var broadData : BroadData? //(optional)broad property 변수 생성
-    //    var categoryData : CategoryData? //(optional) category property 변수 생성
-    //    var filterData : FilterData? // filter property 변수 생성
+    
     @IBOutlet weak var home_tableview: UITableView! //home tableview
     @IBOutlet weak var home_navigationbar: UINavigationBar!
     @IBOutlet weak var home_nav_item: UINavigationItem!
@@ -179,7 +178,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.getData(url: AfreecaURL.AfreecaURL3) // 먹방/쿡방
             }
         })
-     
+        
         
         let cancelAction = UIAlertAction(title: "닫기", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -219,7 +218,7 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                         self.broadData = decodedData
                         DispatchQueue.main.async {
-                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 background Thread에서 처리
                         }
                     }catch{
                         print(error)
@@ -252,3 +251,4 @@ extension UIImageView {
         downloaded(from: url, contentMode: mode)
     }
 }
+

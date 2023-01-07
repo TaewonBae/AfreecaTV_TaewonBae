@@ -9,7 +9,7 @@ import UIKit
 
 class VODController: UIViewController{
     
-
+    
     @IBOutlet weak var vod_navigationbar: UINavigationBar!
     @IBOutlet weak var vod_nav_item: UINavigationItem!
     
@@ -39,12 +39,12 @@ class VODController: UIViewController{
         if let url1 = NSURL(string:AfreecaURL.vodURL1)
         {
             vod_img1.downloaded(from: url1 as URL)
-
+            
         }
         if let url2 = NSURL(string:AfreecaURL.vodURL2)
         {
             vod_img3.downloaded(from: url2 as URL)
-
+            
         }
     }
     private func setupNavigationBarItems(){
@@ -68,7 +68,7 @@ class VODController: UIViewController{
         menuBtn.setImage(UIImage(named:"logo_img2"), for: .normal)
         menuBtn.backgroundColor = UIColor(red: 66/255, green: 121/255, blue: 254/255, alpha: 1)
         menuBtn.layer.cornerRadius = menuBtn.bounds.width/2
-
+        
         // UIBarButtonItem의 rightBarButtonItem 할당
         let menuBarItem = UIBarButtonItem(customView: menuBtn)
         let width2 = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 25)
@@ -77,5 +77,5 @@ class VODController: UIViewController{
         height2?.isActive = true
         vod_nav_item.rightBarButtonItem = menuBarItem
     }
-  
+    
 }

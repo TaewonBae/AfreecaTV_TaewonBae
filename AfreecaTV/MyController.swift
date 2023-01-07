@@ -37,7 +37,7 @@ class MyController: UIViewController{
         menuBtn.setImage(UIImage(named:"logo_img2"), for: .normal)
         menuBtn.backgroundColor = UIColor(red: 66/255, green: 121/255, blue: 254/255, alpha: 1)
         menuBtn.layer.cornerRadius = menuBtn.bounds.width/2
-
+        
         // UIBarButtonItem의 rightBarButtonItem 할당
         let menuBarItem = UIBarButtonItem(customView: menuBtn)
         let width2 = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 25)

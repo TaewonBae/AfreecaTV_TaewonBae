@@ -16,8 +16,8 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-    
+        
+        
         game_navigationbar.shadowImage = UIImage()
         setupNavigationBarItems()
         
@@ -26,9 +26,9 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getData(url: AfreecaURL.gameURL)
         
-
+        
     }
-  
+    
     //table view 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -129,7 +129,7 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
         currHeight3?.isActive = true
         game_nav_item.leftBarButtonItems = [negativeSpacer, imageItem]
     }
-   
+    
     //팁 버튼관련 클릭 이벤트
     @IBAction func onClick_list(_ sender: Any) {
         
@@ -187,23 +187,15 @@ class GameController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: - URL 연결 및 Data Decode 
     func getData(url: String){
-        // 1. URL 만들기
         if let url = URL(string: url){
-            // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
-            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
             let task = session.dataTask(with: url) { (data, response, error) in
-                // 에러가 났을경우 에러메시지 출력후 종료
                 if error != nil{
                     print(error!)
                     return
                 }
-                //Json data에 data 넣기
+                
                 if let JSONdata = data {
-                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
-                    //let dataString = String(data: JSONdata, encoding: .utf8)
-                    //print(dataString!) //JSON data 출력
-                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
                     let decoder = JSONDecoder()
                     do {
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)

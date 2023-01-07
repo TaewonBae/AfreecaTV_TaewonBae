@@ -14,7 +14,7 @@ class MoreController: UIViewController{
     @IBOutlet weak var more_nav_item: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         
         more_navigationbar.shadowImage = UIImage()
         setupNavigationBarItems()
@@ -28,7 +28,7 @@ class MoreController: UIViewController{
         logoImageView.contentMode = .scaleAspectFit
         let imageItem = UIBarButtonItem.init(customView: logoImageView)
         let space = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        space.width = -0
+        space.width = 0
         let width1 = imageItem.customView?.widthAnchor.constraint(equalToConstant: 52)
         width1?.isActive = true
         let height1 = imageItem.customView?.heightAnchor.constraint(equalToConstant: 24)
@@ -41,7 +41,7 @@ class MoreController: UIViewController{
         menuBtn.setImage(UIImage(named:"logo_img2"), for: .normal)
         menuBtn.backgroundColor = UIColor(red: 66/255, green: 121/255, blue: 254/255, alpha: 1)
         menuBtn.layer.cornerRadius = menuBtn.bounds.width/2
-
+        
         // UIBarButtonItem의 rightBarButtonItem 할당
         let menuBarItem = UIBarButtonItem(customView: menuBtn)
         let width2 = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 25)
