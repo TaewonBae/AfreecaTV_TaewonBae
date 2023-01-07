@@ -86,7 +86,52 @@ func getData(url: String){
     }
 }
 ```
-
+### 4. TableView Cell 세팅
+- 서버에서 가져온 데이터를 cell에 세팅해줍니다.
+- 방송제목, BJ닉네임, 총 시청자 수는 label text에 data를 넣어준다.
+- BJ프로필 및 썸네일 이미지를 cell에 할당하기위해 받아온 Optional data를 string type로 바꾼 후 URL 형태로 바꿔준다.(📍주의)
+- 여기까지 할 경우 cell 세팅이 완료되나, 리스트를 불러오면 상당히 오랜시간이 걸림.
+- UIImageview downloaded 메소드는 밑에 설명
+```swift
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    
+    let cell = home_tableview.dequeueReusableCell(withIdentifier: "home_tableviewcell", for: indexPath) as! HomeTableViewCell
+    // cell에 text, image 설정
+    cell.title.text = broadData?.broad[indexPath.row].broad_title
+    cell.nick.text = broadData?.broad[indexPath.row].user_nick
+    cell.view_cnt.text = broadData?.broad[indexPath.row].total_view_cnt
+    //cell 이미지 corner 설정 480 * 270 >> imageview 16:9
+    cell.profile.layer.masksToBounds = true
+    cell.profile.layer.cornerRadius = cell.profile.bounds.width/2
+    cell.thumb.layer.masksToBounds = true
+    cell.thumb.layer.cornerRadius = 10
+    // BJ 프로필, 썸네일 이미지 cell에 할당
+    DispatchQueue.main.async { [self] in
+        //optional data >> string >> url
+        if let profile_str = broadData?.broad[indexPath.row].profile_img
+        {
+            let profile_str2 = "https:" + profile_str
+            if let profile_url = NSURL(string:profile_str2)
+            {
+                cell.profile.downloaded(from: profile_url as URL)
+                
+            }
+        }
+        if let thumb_str = broadData?.broad[indexPath.row].broad_thumb
+        {
+            let thumb_str2 = "https:" + thumb_str
+            if let thumb_url = NSURL(string:thumb_str2)
+            {
+                cell.thumb.downloaded(from: thumb_url as URL)
+            }
+        }
+        
+    }
+    
+    return cell
+}
+```
 
 
 - 서버에서 가져온 
