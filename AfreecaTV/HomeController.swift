@@ -25,7 +25,6 @@ struct Broad : Codable{
     let broad_resolution : String // 방송 해상도
 }
 
-
 class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     var broadData : BroadData? //(optional)broad property 변수 생성
     //    var categoryData : CategoryData? //(optional) category property 변수 생성
@@ -196,10 +195,13 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    //MARK: - URL 연결 및 Data Decode 메소드
+    //MARK: - URL 연결 및 Data Decode
     func getData(url: String){
+        // 1. URL 만들기
         if let url = URL(string: url){
+            // 2. URL Session 만들기
             let session = URLSession(configuration: .default)
+            // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
             let task = session.dataTask(with: url) { (data, response, error) in
                 // 에러가 났을경우 에러메시지 출력후 종료
                 if error != nil{
@@ -208,14 +210,16 @@ class HomeController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 //Json data에 data 넣기
                 if let JSONdata = data {
+                    //print(JSONdata, response!)//몇 byte 왔는지, response의 정보 출력
+                    //let dataString = String(data: JSONdata, encoding: .utf8)
+                    //print(dataString!) //JSON data 출력
+                    //JSON 객체에서 데이터 타입의 인스턴스를 디코딩 + do ~ try catch로 에러 처리
                     let decoder = JSONDecoder()
                     do {
                         let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                         self.broadData = decodedData
-                        
                         DispatchQueue.main.async {
-                            
-                            self.home_tableview.reloadData()
+                            self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
                         }
                     }catch{
                         print(error)

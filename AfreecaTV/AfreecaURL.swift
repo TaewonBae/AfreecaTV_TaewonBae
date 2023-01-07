@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct AfreecaURL {
+class AfreecaURL {
 
     //1. URL
-    
     public static var AfreecaURL1 = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=0&order_type=view_cnt&page_no=1" // 전체 0
     public static var AfreecaURL2 = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00130000&order_type=view_cnt&page_no=1" //토크/캠방 00130000
     public static var AfreecaURL3 = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00330000&order_type=view_cnt&page_no=1" //먹방/쿡방 00330000
