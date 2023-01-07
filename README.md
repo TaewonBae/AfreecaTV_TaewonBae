@@ -18,28 +18,9 @@ class MainController: UITabBarController{
 ## 개발 환경
 
 - 언어 : swift
-- xcode 14 이상에서 빌드 가능
-- Deployment Target  iOS15
-- client id : af_mobilelab_dev_e0f147f6c034776add2142b425e81777
-Device:iPhone
+- xcode : 14.2
+- Deployment Target : iOS15
 
-Installation Environment: Android Studio
-
-Library:
-
-implementation 'com.google.ar:core:1.19.0'
-
-implementation 'de.javagl:obj:0.2.1'
-
-implementation 'com.google.firebase:firebase-storage:19.2.0'
-
-implementation 'com.google.firebase:firebase-auth:19.4.0'
-
-implementation platform('com.google.firebase:firebase-bom:25.12.0')
-
-implementation 'jp.wasabeef:glide-transformations:4.0.0'
-
-implementation 'com.github.bumptech.glide:glide:4.11.0'
 # Developer
 Kim Dong-Jae
 kdjm1ru@naver.com
@@ -57,6 +38,6 @@ Song Yu-Jin
 j_jongleur@naver.com
 Gachon Univ
 
-# API
+# API (아프리카TV OpenAPI)
 
-https://github.com/KimKyuyeon/AR_Object_placment
+https://developers.afreecatv.com/?szWork=openapi
