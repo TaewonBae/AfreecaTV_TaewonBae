@@ -4,8 +4,12 @@
 
 
 ![001](https://user-images.githubusercontent.com/43931412/211161982-5d581f41-b1d2-44e6-b799-090aa9f58060.png)
+
+### LanchScreen & MainScreen
+- 로딩화면과 나머지 화면입니다.
+- MainController에 UITabBarController를 사용하여 홈, 게임, VOD, MY(즐겨찾기), 더보기(설정) 5가지 화면을 구성했습니다.
 ![002](https://user-images.githubusercontent.com/43931412/211161986-0d09f9b6-39c9-44a5-9603-8d5583b5978c.png)
-### 김덕배
+
 ![003](https://user-images.githubusercontent.com/43931412/211161992-2a849572-5c83-43a0-8133-d3b19bf73fff.png)
 ![004](https://user-images.githubusercontent.com/43931412/211161999-7bf078a6-007a-4ce4-8349-c89b44df13c5.png)
 ![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
