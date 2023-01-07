@@ -25,15 +25,17 @@ class AfreecaURL {
 ```
 - URL 연결을 위한 getData함수
 - getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.(parameter에는 위에 설정한 전역 변수를 넣어줍니다.)
-- 
+- getData 함수 안에서는 parameter로 받은 주소를 url형태로 바꿔준 뒤 URL Session을 만들고 URL Session 인스턴스에게 task(data, header, error처리)를 할당합니다.
+- Json Data에 data를 넣어주고 JSON 객체에서 데이터 타입의 인스턴스를 디코딩해줍니다.  (do ~ try catch로 에러 처리)
+- tableview를 reload 할 때 DispatchQueue를 통해 Main Thread가 아닌 별도의 Thread에서 처리한 뒤 Main Thread로 결과만을 전달하여 화면에 표시합니다.
 ```swift
 //MARK: - URL 연결 및 Data Decode
 func getData(url: String){
-    // 1. URL 만들기
+    // 1. URL 
     if let url = URL(string: url){
-        // 2. URL Session 만들기
+        // 2. URL Session 
         let session = URLSession(configuration: .default)
-        // 3. URL Session 인스턴스에게 task 주기 (data, header, error처리)
+        // 3. URL Session dataTask 
         let task = session.dataTask(with: url) { (data, response, error) in
             // 에러가 났을경우 에러메시지 출력후 종료
             if error != nil{
@@ -51,7 +53,7 @@ func getData(url: String){
                     let decodedData = try decoder.decode(BroadData.self, from: JSONdata)
                     self.broadData = decodedData
                     DispatchQueue.main.async {
-                        self.home_tableview.reloadData() //cell 업데이트   >> UI 관련 소스는 main Thread에서 처리
+                        self.home_tableview.reloadData() //cell 업데이트   
                     }
                 }catch{
                     print(error)
@@ -62,7 +64,28 @@ func getData(url: String){
     }
 }
 ```
+```swift
+- JSON 파싱을 쉽게 하기 위한 BroadData형 구조체 선언해줍니다. -> Codable 프로토콜 준수 / Tree 형태 : Objecct > broad > [broad_title, broad_thumb,,,,]
+struct BroadData : Codable{
+    let broad : [Broad] //배열로 되어있어서 배열로 선언
+    let total_cnt : Int
+}
 
+struct Broad : Codable{
+    let broad_title : String// 방송 제목
+    let broad_thumb : String // 방속 썸네일 480*720
+    let user_nick : String // BJ 닉네임
+    let profile_img : String // BJ 프로필 이미지
+    let total_view_cnt : String // 총 시청자 수
+    let broad_start : String // 방송 시작 시간
+    let broad_grade : String // 방송 등급
+    let broad_bps : String // 방송 화질
+    let broad_resolution : String // 방송 해상도
+}
+```
+
+
+- 서버에서 가져온 
 ![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
 
 
