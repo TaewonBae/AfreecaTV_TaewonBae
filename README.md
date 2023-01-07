@@ -1,4 +1,4 @@
-# AfreecaTV-TaewonBae(배태원)
+# AfreecaTV-배태원
 
 ![001](https://user-images.githubusercontent.com/43931412/211161982-5d581f41-b1d2-44e6-b799-090aa9f58060.png)
 ![002](https://user-images.githubusercontent.com/43931412/211161986-0d09f9b6-39c9-44a5-9603-8d5583b5978c.png)
