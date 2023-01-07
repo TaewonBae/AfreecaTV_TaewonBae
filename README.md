@@ -15,14 +15,36 @@
 - 상단 NavigationBar의 오른쪽에있는 메뉴를 선택하면 카테고리 리스트를 불러올 수 있도록 AlertController를 통해 메뉴를 구성하였으며, 홈 카테고리에서는 (전체방송, 토크/캠방, 먹방/쿡방), 게임 카테고리에서는 (게임 전체, LOL, 배틀그라운드, 피파온라인4, 서든어택)을 불러올 수 있습니다.
 ![003](https://user-images.githubusercontent.com/43931412/211161992-2a849572-5c83-43a0-8133-d3b19bf73fff.png)
 ![004](https://user-images.githubusercontent.com/43931412/211161999-7bf078a6-007a-4ce4-8349-c89b44df13c5.png)
-
-### 1.URL 연결 및 Data Pasing & Decoding
+### 1. 카테고리별로 url 전역변수 설정
 - url은 AfreecaURL 클래스에 어디에서나 접근할 수 있도록 카테고리 별로 전역 변수를 설정했습니다. (카테고리별로 'select_vaule'을 다르게 설정)
 ```swift
 class AfreecaURL {
     public static var gameURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1" // 전체 0, 게임00040000
 }
 ```
+
+### 2. 구조체 선언
+- JSON 파싱을 쉽게 하기 위한 BroadData형 구조체 선언해줍니다. -> Codable 프로토콜 준수 / Tree 형태 : Objecct > broad > [broad_title, broad_thumb,,,,]
+```swift
+struct BroadData : Codable{
+    let broad : [Broad] //배열로 되어있어서 배열로 선언
+    let total_cnt : Int
+}
+
+struct Broad : Codable{
+    let broad_title : String// 방송 제목
+    let broad_thumb : String // 방속 썸네일 480*720
+    let user_nick : String // BJ 닉네임
+    let profile_img : String // BJ 프로필 이미지
+    let total_view_cnt : String // 총 시청자 수
+    let broad_start : String // 방송 시작 시간
+    let broad_grade : String // 방송 등급
+    let broad_bps : String // 방송 화질
+    let broad_resolution : String // 방송 해상도
+}
+```
+
+### 3.URL 연결 및 Data Pasing & Decoding
 - URL 연결을 위한 getData함수
 - getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.(parameter에는 위에 설정한 전역 변수를 넣어줍니다.)
 - getData 함수 안에서는 parameter로 받은 주소를 url형태로 바꿔준 뒤 URL Session을 만들고 URL Session 인스턴스에게 task(data, header, error처리)를 할당합니다.
@@ -64,25 +86,7 @@ func getData(url: String){
     }
 }
 ```
-```swift
-- JSON 파싱을 쉽게 하기 위한 BroadData형 구조체 선언해줍니다. -> Codable 프로토콜 준수 / Tree 형태 : Objecct > broad > [broad_title, broad_thumb,,,,]
-struct BroadData : Codable{
-    let broad : [Broad] //배열로 되어있어서 배열로 선언
-    let total_cnt : Int
-}
 
-struct Broad : Codable{
-    let broad_title : String// 방송 제목
-    let broad_thumb : String // 방속 썸네일 480*720
-    let user_nick : String // BJ 닉네임
-    let profile_img : String // BJ 프로필 이미지
-    let total_view_cnt : String // 총 시청자 수
-    let broad_start : String // 방송 시작 시간
-    let broad_grade : String // 방송 등급
-    let broad_bps : String // 방송 화질
-    let broad_resolution : String // 방송 해상도
-}
-```
 
 
 - 서버에서 가져온 
