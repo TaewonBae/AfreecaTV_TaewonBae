@@ -1,7 +1,7 @@
 # AfreecaTV_TaewonBae
 AfreecaTV OpenAPI를 이용한 방송화면 구성
 
-<img src="" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
