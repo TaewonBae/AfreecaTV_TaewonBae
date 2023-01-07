@@ -2,15 +2,15 @@
 - [아프리카TV Open API]를 사용하여 방송 리스트를 조회하고 카테고리로 필터링할 수 있는 어플리케이션입니다.
 - 리스트에서 방송을 클릭하면 방송 상세 정보를 확인할 수 있습니다.
 
+</br>
+
 ## 개발 환경
 
 - 언어 : swift
 - xcode : 14.2
 - Deployment Target : iOS15
 
-## API (아프리카TV OpenAPI)
-
-https://developers.afreecatv.com/?szWork=openapi
+</br>
 
 ![001](https://user-images.githubusercontent.com/43931412/211161982-5d581f41-b1d2-44e6-b799-090aa9f58060.png)
 
@@ -199,4 +199,7 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 }
 ```
 
+## API (아프리카TV OpenAPI)
+
+https://developers.afreecatv.com/?szWork=openapi
 
