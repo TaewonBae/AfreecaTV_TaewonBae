@@ -1,7 +1,11 @@
 # AfreecaTV_TaewonBae
 AfreecaTV OpenAPI를 이용한 방송화면 구성
 
-<img src="https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG" width="250" height="500"/><img src="https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156088-139d6847-dd67-45fa-bb87-35c216f2eb45.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156090-28037c59-9e01-4dfa-a50a-2e115facc0f7.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156093-adfc4223-cf2f-4b8a-8ef2-48f80be913b8.PNG" width="250" height="500"/>
+<img src="https://user-images.githubusercontent.com/43931412/211156094-75b24dc1-7d76-4ef1-b69e-91fe22c69816.PNG" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
@@ -13,17 +17,8 @@ AfreecaTV OpenAPI를 이용한 방송화면 구성
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
 <img src="" width="250" height="500"/>
-<img src="" width="250" height="500"/>
-<img src="" width="250" height="500"/>
-<img src="" width="250" height="500"/>
-<img src="" width="250" height="500"/>
-<img src="" width="250" height="500"/>
-![1_로딩화면](https://user-images.githubusercontent.com/43931412/211156133-bce66cee-0dc0-4748-a91e-b8b9a70caf5f.PNG)
-![2_전체](https://user-images.githubusercontent.com/43931412/211156135-1a4f83d3-be24-4410-a3a4-39480d967675.PNG)
-![3_감스트방송정보](https://user-images.githubusercontent.com/43931412/211156088-139d6847-dd67-45fa-bb87-35c216f2eb45.PNG)
-![4_전체메뉴](https://user-images.githubusercontent.com/43931412/211156090-28037c59-9e01-4dfa-a50a-2e115facc0f7.PNG)
-![5_토크_캠방](https://user-images.githubusercontent.com/43931412/211156093-adfc4223-cf2f-4b8a-8ef2-48f80be913b8.PNG)
-![6_1_연령](https://user-images.githubusercontent.com/43931412/211156094-75b24dc1-7d76-4ef1-b69e-91fe22c69816.PNG)
+
+
 ![6_먹쿡방](https://user-images.githubusercontent.com/43931412/211156097-ae48265c-03d4-47d6-9a9d-f9759967ea13.PNG)
 ![7_게임전체](https://user-images.githubusercontent.com/43931412/211156098-954c8bdf-dec1-4fd8-b8d9-72578b4accc2.PNG)
 ![8_게임메뉴](https://user-images.githubusercontent.com/43931412/211156100-2124752a-cc54-4195-bc75-adaaf8f6565e.PNG)
