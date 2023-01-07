@@ -4,13 +4,6 @@
 
 </br>
 
-## 개발 환경
-
-- 언어 : swift
-- xcode : 14.2
-- Deployment Target : iOS15
-
-</br>
 
 ![001](https://user-images.githubusercontent.com/43931412/211161982-5d581f41-b1d2-44e6-b799-090aa9f58060.png)
 
@@ -198,6 +191,13 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.present(alert, animated: true, completion: nil)
 }
 ```
+
+## 개발 환경
+
+- 언어 : swift
+- xcode : 14.2
+- Deployment Target : iOS15
+
 
 ## API (아프리카TV OpenAPI)
 
