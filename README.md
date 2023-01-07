@@ -155,14 +155,15 @@ extension UIImageView {
     }
 }
 ```
-### 6. TableView Cell 클릭 이벤트
-
-
+## 방송 상세 정보
+- 방송을 클릭하면 해당 방송의 상세 정보를 확인 할 수 있습니다.
 ![005](https://user-images.githubusercontent.com/43931412/211162001-ec67d9c3-4b00-41f6-b77c-8aa5fa79996f.png)
-- 
+### 6. TableView Cell 클릭 이벤트
+- cell 클릭시 indexPath.row에 해당하는 인덱스값을 할당하여 방송 상세 정보(Bj이름, 방송시작시간, 방송등급, 방송해상도, 방송화질, 총 시청자 수)를 UIAlertController를 통해 표시해줍니다.
+- 방송 broad_grade는 0 or 19로 받기때문에 방송등급에 해당하는 string값을 재설정 해줍니다.
 ```swift
 func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // 방송 상세 정보 alert로 띄우기 (Bj이름, 방송시작시간, 방송해상도, 방송화질, 총 시청자 수)
+    // 방송 상세 정보 alert로 띄우기 (Bj이름, 방송시작시간, 방송등급, 방송해상도, 방송화질, 총 시청자 수)
     let str_nick : String = ""+(broadData?.broad[indexPath.row].user_nick)!
     let str_broad_start : String = ""+(broadData?.broad[indexPath.row].broad_start)!
     let grade = ""+(broadData?.broad[indexPath.row].broad_grade)!
