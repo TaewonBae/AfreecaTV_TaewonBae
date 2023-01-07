@@ -21,23 +21,6 @@ class MainController: UITabBarController{
 - xcode : 14.2
 - Deployment Target : iOS15
 
-# Developer
-Kim Dong-Jae
-kdjm1ru@naver.com
-Gachon Univ
-
-Bae Tae-Won
-gerrard1283@naver.com
-Gachon Univ
-
-Kim Kyu-Yeon
-sally6251@naver.com
-Gachon Univ
-
-Song Yu-Jin
-j_jongleur@naver.com
-Gachon Univ
-
-# API (아프리카TV OpenAPI)
+## API (아프리카TV OpenAPI)
 
 https://developers.afreecatv.com/?szWork=openapi
