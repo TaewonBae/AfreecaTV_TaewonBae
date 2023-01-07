@@ -18,7 +18,7 @@
 
 ### 1.URL 연결 및 Data Pasing & Decoding
 - getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.
-- url은 AfreecaURL 클래스에 어디에서나 접근할 수 있도록 카테고리 별로 전역 변수를 설정했습니다.
+- url은 AfreecaURL 클래스에 어디에서나 접근할 수 있도록 카테고리 별로 전역 변수를 설정했습니다. (카테고리별로 'select_vaule'을 다르게 설정)
 ```swift
 public static var gameURL = "https://openapi.afreecatv.com/broad/list?client_id=af_mobilelab_dev_e0f147f6c034776add2142b425e81777&select_key=cate&select_value=00040000&order_type=view_cnt&page_no=1" // 게임 00040000  
 ```
