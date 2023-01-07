@@ -342,10 +342,24 @@
                     <view key="view" contentMode="scaleToFill" id="hE1-IA-LtU">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WCP-Il-qxF" userLabel="my_navigationbar">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem id="RMe-2b-c8L" userLabel="my_nav_item"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="akz-qm-sxq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="MY" image="star" catalog="system" id="07J-ll-Ir9"/>
+                    <connections>
+                        <outlet property="my_nav_item" destination="RMe-2b-c8L" id="vqA-cN-D8D"/>
+                        <outlet property="my_navigationbar" destination="WCP-Il-qxF" id="M1h-pj-Cqq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOQ-sk-7H8" sceneMemberID="firstResponder"/>
             </objects>
@@ -358,14 +372,32 @@
                     <view key="view" contentMode="scaleToFill" id="ceq-dr-yoS">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNn-kP-jrE" userLabel="more_navigationbar">
+                                <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <items>
+                                    <navigationItem id="bFk-cQ-vY9" userLabel="more_nav_item"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="I0X-3L-CVa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iNn-kP-jrE" firstAttribute="top" secondItem="I0X-3L-CVa" secondAttribute="top" id="MgG-4r-odh"/>
+                            <constraint firstItem="iNn-kP-jrE" firstAttribute="trailing" secondItem="I0X-3L-CVa" secondAttribute="trailing" id="Qb7-LS-Its"/>
+                            <constraint firstItem="iNn-kP-jrE" firstAttribute="leading" secondItem="I0X-3L-CVa" secondAttribute="leading" id="gQ2-aA-Hn3"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="더보기" image="plus.square.dashed" catalog="system" id="pKE-S6-9KO"/>
+                    <connections>
+                        <outlet property="more_nav_item" destination="bFk-cQ-vY9" id="OEC-NO-JqN"/>
+                        <outlet property="more_navigationbar" destination="iNn-kP-jrE" id="IcD-9A-g5x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iec-yR-t7T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-981"/>
+            <point key="canvasLocation" x="323.07692307692304" y="-981.042654028436"/>
         </scene>
     </scenes>
     <resources>
