@@ -5,6 +5,7 @@ AfreecaTV OpenAPI를 이용한 방송화면 구성
 <img src="https://user-images.githubusercontent.com/43931412/211156288-04498d16-852e-44cb-9f8f-f2738a4a47e1.PNG" width="250" height="500"/>
 <img src="https://user-images.githubusercontent.com/43931412/211156098-954c8bdf-dec1-4fd8-b8d9-72578b4accc2.PNG" width="250" height="500"/>
 
+![001](https://user-images.githubusercontent.com/43931412/211157268-0da4ccbf-2435-41ff-b9de-0cc9cc430aea.png)
 
 <img src="https://user-images.githubusercontent.com/43931412/211156365-54cd1bcd-a5a7-4774-9e76-4340b9392171.PNG" width="250" height="500"/>
 
