@@ -55,7 +55,7 @@ struct Broad : Codable{
 - getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.(parameter에는 위에 설정한 전역 변수를 넣어줍니다.)
 - getData 함수 안에서는 parameter로 받은 주소를 url형태로 바꿔준 뒤 URL Session을 만들고 URL Session 인스턴스에게 task(data, header, error처리)를 할당합니다.
 - Json Data에 data를 넣어주고 JSON 객체에서 데이터 타입의 인스턴스를 디코딩해줍니다.  (do ~ try catch로 에러 처리)
-- tableview를 reload 할 때 DispatchQueue를 통해 Main Thread가 아닌 별도의 Thread에서 처리한 뒤 Main Thread로 결과만을 전달하여 화면에 표시합니다.
+- tableview를 reload 할 때 DispatchQueue를 통해 Main Thread로 결과만을 전달하여 화면에 표시합니다.
 ```swift
 //MARK: - URL 연결 및 Data Decode
 func getData(url: String){
