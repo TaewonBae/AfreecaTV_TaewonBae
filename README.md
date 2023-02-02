@@ -50,7 +50,7 @@ struct Broad : Codable{
 }
 ```
 
-### 3.URL 연결 및 Data Pasing & Decoding
+### 3.URL 연결 및 Data Parsing & Decoding
 - URL 연결을 위한 getData함수
 - getData 함수는 url을 string형으로 받기위해 string type의 parameter를 가집니다.(parameter에는 위에 설정한 전역 변수를 넣어줍니다.)
 - getData 함수 안에서는 parameter로 받은 주소를 url형태로 바꿔준 뒤 URL Session을 만들고 URL Session 인스턴스에게 task(data, header, error처리)를 할당합니다.
